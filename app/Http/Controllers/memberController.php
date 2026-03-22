@@ -157,18 +157,18 @@ class memberController extends AppBaseController
 
     public function getLoggedInMemberDetails()
     {
-
-        if (!Auth::guest()){
-            $user = Auth::user();
-            echo "Userid is " . $user->id;    
-            echo "The member's name is " . $user->members->firstname . " ";
-            echo $user->member->surname;
-            echo "The member is a " . $user->member->membertype;
-            echo "Member id is " . $user->member->id;
-
+        if (!Auth::check()) {
+            return "not logged in";
         }
-        else {
-            echo "not logged in ";
+        $user = Auth::user(); 
+        if (!$user->member) {
+            // No linked member row yet
+            return "Logged in as {$user->name} (user id: {$user->id}), but no Member is linked (member is null).";
         }
+        return
+            "Userid is {$user->id}<br>" .
+            "Member id is {$user->member->id}<br>" .
+            "The member's name is {$user->member->firstname} {$user->member->surname}<br>" .
+            "The member is a {$user->member->membertype}";
     }
 }

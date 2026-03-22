@@ -76,8 +76,12 @@ class member extends Model
         return $this->hasMany(\App\Models\Booking::class, 'memberid');
     }
 
-    public function member()
+    public function __toString()
     {
-        return $this->hasOne(\App\Models\Member::class, 'userid');
+        return $this->firstname . " " . $this-> surname;
+    }
+
+    public function user(){ 
+        return $this->belongsTo(\App\User::class,'userid','id');
     }
 }

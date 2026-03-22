@@ -17,7 +17,7 @@
 </div>
 
 <!-- Memberid Field -->
-<input type="hidden" name="memberid" value="2">
+<input type="hidden" name="memberid" value="{{Auth::user()->member->id}}">
 
 <!-- Courtid Field -->
 <div class="form-group col-sm-6">
