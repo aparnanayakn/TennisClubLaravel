@@ -75,4 +75,9 @@ class member extends Model
     {
         return $this->hasMany(\App\Models\Booking::class, 'memberid');
     }
+
+    public function member()
+    {
+        return $this->hasOne(\App\Models\Member::class, 'userid');
+    }
 }
